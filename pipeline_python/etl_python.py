@@ -33,7 +33,7 @@ def read_data_from_file(path_txt: Path) -> defaultdict[list]:
 
 def calculate_metrics(datas:dict[list]) -> defaultdict[tuple]:
     """    
-    Calculates the average, lowest and highest temperature by station.
+    Calculates the average, lowest and highest temperature by station and return results order by statios
 
     Parameters
     ----------
@@ -52,12 +52,12 @@ def calculate_metrics(datas:dict[list]) -> defaultdict[tuple]:
         mean_temp = sum(temperatures) / len(temperatures)
         max_temp = max(temperatures)
         results[station] = (min_temp, mean_temp, max_temp)
-
+    results = dict(sorted(results.items()))
     return results
 
 
 if __name__ == "__main__":
-    path_txt = '../data/measurements.txt'
+    path_txt = Path('../data/measurements.txt')
 
     start_time = time.time()
     datas = read_data_from_file(path_txt)

@@ -14,8 +14,7 @@ def query_duckdb():
 
 if __name__ == '__main__':
     start_time = time.time()
-    result = query_duckdb()
+    result = query_duckdb().df() # lazy evaluation
     end_time = time.time()
     duration = end_time - start_time
-    print(query_duckdb())
     print(duration)
